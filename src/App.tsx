@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import EditorPage from './pages/EditorPage'
@@ -12,7 +13,7 @@ const routes = [
   { to: '/finale', label: 'Ghat Drop' },
 ]
 
-function Screen({ children }) {
+function Screen({ children }: { children: ReactNode }) {
   return (
     <motion.main
       initial={{ opacity: 0, y: 24 }}

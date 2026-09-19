@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "typecheck": "tsc -b",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -19,10 +20,12 @@
   },
   "devDependencies": {
     "@rolldown/binding-darwin-arm64": "^1.2.9",
+    "@types/node": "^26.6.2",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
+    "typescript": "^7.0.2",
     "vite": "^8.3.0",
     "wrangler": "^4.135.0"
   }
