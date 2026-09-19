@@ -1,5 +1,6 @@
 const EDITED_IMAGE_KEY = 'kashi-galli:edited-image'
 const MISSION_STATS_KEY = 'kashi-galli:mission-stats'
+const BASE_IMAGE_KEY = 'kashi-galli:base-image'
 
 export type MissionResult = 'success' | 'failed' | 'in-progress'
 
@@ -33,6 +34,42 @@ export function saveEditedImage(dataUrl: string) {
     localStorage.setItem(EDITED_IMAGE_KEY, dataUrl)
   } catch {
     // Ignore storage write failures (private mode or quota).
+  }
+}
+
+export function getSavedBaseImage(): string | null {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  try {
+    return localStorage.getItem(BASE_IMAGE_KEY)
+  } catch {
+    return null
+  }
+}
+
+export function saveBaseImage(dataUrl: string) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  try {
+    localStorage.setItem(BASE_IMAGE_KEY, dataUrl)
+  } catch {
+    // Ignore storage write failures (private mode or quota).
+  }
+}
+
+export function clearBaseImage() {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  try {
+    localStorage.removeItem(BASE_IMAGE_KEY)
+  } catch {
+    // Ignore storage delete failures.
   }
 }
 
