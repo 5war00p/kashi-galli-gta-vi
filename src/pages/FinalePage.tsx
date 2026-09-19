@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getSavedEditedImage } from '../lib/editorState'
+import { getMissionStats, getSavedEditedImage, type MissionStats } from '../lib/editorState'
 
 function FinalePage() {
   const [editedImage] = useState<string | null>(() => getSavedEditedImage())
+  const [missionStats] = useState<MissionStats | null>(() => getMissionStats())
 
   return (
     <section className="grid gap-6 lg:grid-cols-[1fr_0.95fr] lg:gap-8">
@@ -34,6 +35,23 @@ function FinalePage() {
               alt="Saved edited visual for finale"
               className="h-48 w-full rounded-xl object-cover"
             />
+
+            {missionStats && (
+              <div className="mt-3 grid grid-cols-2 gap-2 text-xs uppercase tracking-[0.08em] text-teal-100/90 sm:grid-cols-4">
+                <div className="rounded-lg border border-teal-200/30 bg-black/20 px-2 py-2 text-center">
+                  Score: {missionStats.score}
+                </div>
+                <div className="rounded-lg border border-teal-200/30 bg-black/20 px-2 py-2 text-center">
+                  Dodges: {missionStats.dodges}
+                </div>
+                <div className="rounded-lg border border-teal-200/30 bg-black/20 px-2 py-2 text-center">
+                  Hits: {missionStats.collisions}
+                </div>
+                <div className="rounded-lg border border-teal-200/30 bg-black/20 px-2 py-2 text-center">
+                  Result: {missionStats.result}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
