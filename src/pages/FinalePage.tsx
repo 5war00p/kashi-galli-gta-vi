@@ -5,11 +5,9 @@ import { getMissionStats, getSavedEditedImage, type MissionStats } from '../lib/
 function FinalePage() {
   const [editedImage] = useState<string | null>(() => getSavedEditedImage())
   const [missionStats] = useState<MissionStats | null>(() => getMissionStats())
-  const [exportStatus, setExportStatus] = useState('')
 
   const exportPoster = async () => {
     if (!editedImage) {
-      setExportStatus('No edited visual available to export yet.')
       return
     }
 
@@ -19,7 +17,6 @@ function FinalePage() {
       canvas.height = 1600
       const context = canvas.getContext('2d')
       if (!context) {
-        setExportStatus('Could not initialize poster renderer.')
         return
       }
 
@@ -91,10 +88,8 @@ function FinalePage() {
       document.body.appendChild(link)
       link.click()
       link.remove()
-
-      setExportStatus('Poster exported successfully.')
     } catch {
-      setExportStatus('Poster export failed. Please try again.')
+      // Ignore export failures silently; user can retry export.
     }
   }
 
@@ -153,7 +148,6 @@ function FinalePage() {
               >
                 Export Finale Poster
               </button>
-              {exportStatus && <p className="text-xs text-sand-100/80">{exportStatus}</p>}
             </div>
           </div>
         )}

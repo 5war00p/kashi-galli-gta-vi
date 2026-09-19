@@ -20,6 +20,22 @@ This project is intentionally aligned with the judging criteria:
 
 The edited visual is saved to local storage and appears in both Mission and Finale.
 
+## Implemented Features
+
+- Workshop uses Unlayer React Image Editor for image customization.
+- Edited visual persists in local storage and appears in Mission + Finale.
+- Mission includes a timed gameplay loop with score, dodges, and collisions.
+- Mission run result is persisted and shown in Finale.
+- Finale can export a downloadable poster PNG with mission stats overlay.
+
+## How To Demo (Hackathon)
+
+1. Open Workshop and upload/customize an image.
+2. Use Save in the editor UI.
+3. Go to Mission and complete at least one run.
+4. Go to Finale and click Export Finale Poster.
+5. Download and share the generated poster image.
+
 ## Tech Stack
 
 - React + Vite
@@ -100,8 +116,13 @@ Before first deployment, authenticate Wrangler and ensure the Worker name in [wr
 - Editor workflow demo (GIF or short video)
 - README section mapping implementation to challenge criteria
 
+## Known Notes
+
+- Vite prints a Node version recommendation warning on Node 22.11.0.
+- Recommended Node version is 22.12+ for warning-free builds.
+
 ## Next Implementation Milestones
 
-- Create mission score/timer loop
-- Generate downloadable finale poster with stats overlay
-- Add audio ambiance for galli and ghat transitions
+- Add background ambience and SFX for workshop/mission/finale.
+- Add optional keyboard controls for mission actions.
+- Add final CTA section with deployed link and challenge submission metadata.
