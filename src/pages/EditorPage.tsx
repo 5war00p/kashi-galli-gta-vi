@@ -1,5 +1,8 @@
-import { type ChangeEvent, useMemo, useState } from 'react'
-import ImageEditor, { type ImageEditorSaveResult } from '@unlayer/react-image-editor'
+import { type ChangeEvent, useMemo, useRef, useState } from 'react'
+import ImageEditor, {
+  type ImageEditorRef,
+  type ImageEditorSaveResult,
+} from '@unlayer/react-image-editor'
 import { Link } from 'react-router-dom'
 import { getSavedEditedImage, saveEditedImage } from '../lib/editorState'
 
@@ -10,6 +13,7 @@ const tasks = [
 ]
 
 function EditorPage() {
+  const editorRef = useRef<ImageEditorRef>(null)
   const initialSavedImage = getSavedEditedImage()
   const [imageToEdit, setImageToEdit] = useState('/kashi-base.svg')
   const [savedImage, setSavedImage] = useState<string | null>(initialSavedImage)
@@ -49,6 +53,38 @@ function EditorPage() {
     setSavedImage(dataUrl)
     saveEditedImage(dataUrl)
     setStatus('Saved. This edited visual is ready for mission and finale scenes.')
+  }
+
+  const handleCancel = async () => {
+    try {
+      await editorRef.current?.editor?.reset(imageToEdit)
+      setStatus('Unsaved changes were discarded and canvas was reset.')
+    } catch {
+      setStatus('Could not reset editor right now. Please try again.')
+    }
+  }
+
+  const downloadSavedImage = async () => {
+    if (!savedImage) {
+      setStatus('Nothing to download yet. Capture from editor first.')
+      return
+    }
+
+    try {
+      const response = await fetch(savedImage)
+      const blob = await response.blob()
+      const objectUrl = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = objectUrl
+      link.download = 'kashi-galli-edited.png'
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      URL.revokeObjectURL(objectUrl)
+      setStatus('Download started.')
+    } catch {
+      setStatus('Download failed. Please try capturing again.')
+    }
   }
 
   return (
@@ -102,13 +138,13 @@ function EditorPage() {
               alt="Edited mission visual"
               className="h-48 w-full rounded-xl object-cover"
             />
-            <a
-              href={savedImage}
-              download="kashi-galli-edited.png"
+            <button
+              type="button"
+              onClick={downloadSavedImage}
               className="mt-3 inline-block rounded-full border border-teal-200 bg-teal-200/20 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-teal-100"
             >
               Download Edited Image
-            </a>
+            </button>
           </div>
         )}
 
@@ -144,17 +180,18 @@ function EditorPage() {
       </aside>
 
       <div className="rounded-3xl border border-white/15 bg-black/25 p-3 sm:p-4 lg:col-span-12">
-        <p className="mb-3 px-1 text-xs uppercase tracking-[0.22em] text-sand-100/75">
-          Live Editor Canvas
-        </p>
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3 px-1">
+          <p className="text-xs uppercase tracking-[0.22em] text-sand-100/75">Live Editor Canvas</p>
+        </div>
         <div className="overflow-hidden rounded-2xl border border-white/15 bg-ink-950/60 p-1 sm:p-2">
           <ImageEditor
+            ref={editorRef}
             image={imageToEdit}
             options={editorOptions}
             minHeight="72vh"
             style={{ width: '100%' }}
             onSave={handleSave}
-            onCancel={() => setStatus('Editing cancelled. Continue when ready.')}
+            onCancel={handleCancel}
             onLoadError={() => setStatus('Could not load that image. Try a different file.')}
             onError={() => setStatus('Editor failed to initialize. Refresh and retry.')}
           />
