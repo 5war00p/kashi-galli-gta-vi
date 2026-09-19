@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getSavedEditedImage } from '../lib/editorState'
 
 const hazards = [
   'Rickshaw choke-point',
@@ -8,6 +10,8 @@ const hazards = [
 ]
 
 function MissionPage() {
+  const [editedImage] = useState<string | null>(() => getSavedEditedImage())
+
   return (
     <section className="grid gap-6 lg:grid-cols-[1fr_0.95fr] lg:gap-8">
       <article className="rounded-3xl border border-teal-200/35 bg-ink-900/65 p-6 sm:p-8">
@@ -26,6 +30,19 @@ function MissionPage() {
           ETA to ghat: 90s. Keep momentum, avoid collisions, and hit the riverfront
           before the bell drop.
         </div>
+
+        {editedImage && (
+          <div className="mt-6 rounded-2xl border border-saffron-300/35 bg-black/30 p-4">
+            <p className="mb-3 text-xs uppercase tracking-[0.16em] text-saffron-200">
+              Mission HUD Visual
+            </p>
+            <img
+              src={editedImage}
+              alt="Saved customized mission visual"
+              className="h-40 w-full rounded-xl object-cover"
+            />
+          </div>
+        )}
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

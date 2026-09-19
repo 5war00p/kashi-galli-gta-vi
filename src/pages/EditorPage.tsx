@@ -1,6 +1,7 @@
 import { type ChangeEvent, useMemo, useState } from 'react'
 import ImageEditor, { type ImageEditorSaveResult } from '@unlayer/react-image-editor'
 import { Link } from 'react-router-dom'
+import { getSavedEditedImage, saveEditedImage } from '../lib/editorState'
 
 const tasks = [
   'Upload base ride or avatar image',
@@ -9,9 +10,14 @@ const tasks = [
 ]
 
 function EditorPage() {
+  const initialSavedImage = getSavedEditedImage()
   const [imageToEdit, setImageToEdit] = useState('/kashi-base.svg')
-  const [savedImage, setSavedImage] = useState<string | null>(null)
-  const [status, setStatus] = useState('Load an image and start editing your Kashi style.')
+  const [savedImage, setSavedImage] = useState<string | null>(initialSavedImage)
+  const [status, setStatus] = useState(
+    initialSavedImage
+      ? 'Loaded your previously saved edited visual from local storage.'
+      : 'Load an image and start editing your Kashi style.',
+  )
 
   const editorOptions = useMemo(
     () => ({
@@ -41,6 +47,7 @@ function EditorPage() {
 
   const handleSave = ({ dataUrl }: ImageEditorSaveResult) => {
     setSavedImage(dataUrl)
+    saveEditedImage(dataUrl)
     setStatus('Saved. This edited visual is ready for mission and finale scenes.')
   }
 

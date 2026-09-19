@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getSavedEditedImage } from '../lib/editorState'
 
 function FinalePage() {
+  const [editedImage] = useState<string | null>(() => getSavedEditedImage())
+
   return (
     <section className="grid gap-6 lg:grid-cols-[1fr_0.95fr] lg:gap-8">
       <article className="rounded-3xl border border-saffron-500/35 bg-ink-900/70 p-6 sm:p-8">
@@ -19,6 +23,19 @@ function FinalePage() {
         <div className="mt-6 rounded-2xl border border-dashed border-saffron-300/45 bg-saffron-300/10 p-5 text-sm text-sand-100/85">
           Share card export will be implemented after editor state wiring.
         </div>
+
+        {editedImage && (
+          <div className="mt-6 rounded-2xl border border-teal-200/30 bg-teal-200/10 p-4">
+            <p className="mb-3 text-xs uppercase tracking-[0.16em] text-teal-100">
+              Finale Poster Preview
+            </p>
+            <img
+              src={editedImage}
+              alt="Saved edited visual for finale"
+              className="h-48 w-full rounded-xl object-cover"
+            />
+          </div>
+        )}
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
