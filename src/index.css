@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-sans: 'Manrope', sans-serif;
+
+  --color-ink-950: #0d0c0f;
+  --color-ink-900: #17141d;
+  --color-sand-100: #f9efe2;
+  --color-saffron-300: #ffb347;
+  --color-saffron-500: #f8751a;
+  --color-teal-200: #8ce6d9;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: var(--color-sand-100);
+  background-color: var(--color-ink-950);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(248, 117, 26, 0.28), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(140, 230, 217, 0.2), transparent 26%),
+    linear-gradient(140deg, #0d0c0f 12%, #221724 45%, #132634 100%);
+}
+
+#root {
+  min-height: 100svh;
+}
