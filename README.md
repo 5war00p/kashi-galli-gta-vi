@@ -1,15 +1,6 @@
 # Galli to Ghat: Kashi GTA VI Inspired Experience
 
-A GTA VI-inspired interactive web experience set in the narrow gallis of Kashi, built for the Build with React Image Editor Challenge.
-
-## Challenge Fit
-
-This project is intentionally aligned with the judging criteria:
-
-- Creativity: The world and narrative are rooted in Kashi gallis and ghat culture rather than a generic city setting.
-- Visual execution: Cinematic route flow, stylized gradients, custom hero visual, and motion-driven transitions.
-- Use of React Image Editor: Unlayer React Image Editor is the core interaction in the Workshop route.
-- Overall experience: Edit -> persist -> reuse flow across Workshop, Mission, and Finale.
+A GTA VI-inspired interactive web experience set in the narrow gallis of Kashi.
 
 ## Current Experience Flow
 
@@ -28,14 +19,6 @@ The edited visual is saved to local storage and appears in both Mission and Fina
 - Mission run result is persisted and shown in Finale.
 - Finale can export a downloadable poster PNG with mission stats overlay.
 
-## How To Demo (Hackathon)
-
-1. Open Workshop and upload/customize an image.
-2. Use Save in the editor UI.
-3. Go to Mission and complete at least one run.
-4. Go to Finale and click Export Finale Poster.
-5. Download and share the generated poster image.
-
 ## Tech Stack
 
 - React + Vite
@@ -50,7 +33,7 @@ The edited visual is saved to local storage and appears in both Mission and Fina
 
 Requirements:
 
-- Node 22.12+ recommended (current build can still pass on 22.11 with warning)
+- Node 22.12+
 - pnpm
 
 Install and run:
@@ -68,7 +51,7 @@ pnpm typecheck
 pnpm build
 ```
 
-Note: build is gated and already runs lint + typecheck automatically.
+Build runs lint and typecheck automatically.
 
 ## Cloudflare Deployment (Workers + Static Assets)
 
@@ -109,20 +92,3 @@ Before first deployment, authenticate Wrangler and ensure the Worker name in [wr
 - [src/pages/FinalePage.tsx](src/pages/FinalePage.tsx): finale scene with persisted visual
 - [src/lib/editorState.ts](src/lib/editorState.ts): local storage helpers
 
-## Submission Checklist
-
-- Public GitHub repository
-- Deployed URL on Cloudflare Workers
-- Editor workflow demo (GIF or short video)
-- README section mapping implementation to challenge criteria
-
-## Known Notes
-
-- Vite prints a Node version recommendation warning on Node 22.11.0.
-- Recommended Node version is 22.12+ for warning-free builds.
-
-## Next Implementation Milestones
-
-- Add background ambience and SFX for workshop/mission/finale.
-- Add optional keyboard controls for mission actions.
-- Add final CTA section with deployed link and challenge submission metadata.
