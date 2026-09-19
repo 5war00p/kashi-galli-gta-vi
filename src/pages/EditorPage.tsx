@@ -15,7 +15,7 @@ const tasks = [
 function EditorPage() {
   const editorRef = useRef<ImageEditorRef>(null)
   const initialSavedImage = getSavedEditedImage()
-  const [imageToEdit, setImageToEdit] = useState('/kashi-base.svg')
+  const [imageToEdit, setImageToEdit] = useState('/kashi-base.png')
   const [savedImage, setSavedImage] = useState<string | null>(initialSavedImage)
   const [status, setStatus] = useState(
     initialSavedImage
@@ -117,7 +117,7 @@ function EditorPage() {
             <button
               type="button"
               onClick={() => {
-                setImageToEdit('/kashi-base.svg')
+                setImageToEdit('/kashi-base.png')
                 setStatus('Reset to base Kashi visual.')
               }}
               className="rounded-full border border-white/40 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-sand-100/90"
