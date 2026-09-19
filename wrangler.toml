@@ -1,0 +1,7 @@
+name = "kashi-galli-gta-vi"
+main = "src/worker.ts"
+compatibility_date = "2026-09-19"
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"

@@ -8,7 +8,10 @@
     "build": "pnpm lint && pnpm typecheck && vite build",
     "typecheck": "tsc -b",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cf:dev": "pnpm build && wrangler dev",
+    "cf:deploy": "pnpm build && wrangler deploy",
+    "cf:deploy:dry-run": "pnpm build && wrangler deploy --dry-run"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

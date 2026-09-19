@@ -1,16 +1,107 @@
-# React + Vite
+# Galli to Ghat: Kashi GTA VI Inspired Experience
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A GTA VI-inspired interactive web experience set in the narrow gallis of Kashi, built for the Build with React Image Editor Challenge.
 
-Currently, two official plugins are available:
+## Challenge Fit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is intentionally aligned with the judging criteria:
 
-## React Compiler
+- Creativity: The world and narrative are rooted in Kashi gallis and ghat culture rather than a generic city setting.
+- Visual execution: Cinematic route flow, stylized gradients, custom hero visual, and motion-driven transitions.
+- Use of React Image Editor: Unlayer React Image Editor is the core interaction in the Workshop route.
+- Overall experience: Edit -> persist -> reuse flow across Workshop, Mission, and Finale.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Current Experience Flow
 
-## Expanding the Oxlint configuration
+1. Arrival
+2. Workshop (React Image Editor)
+3. Mission
+4. Finale
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The edited visual is saved to local storage and appears in both Mission and Finale.
+
+## Tech Stack
+
+- React + Vite
+- TypeScript
+- Tailwind CSS v4
+- React Router
+- Framer Motion
+- Unlayer React Image Editor
+- Cloudflare Workers + static assets via Wrangler
+
+## Run Locally
+
+Requirements:
+
+- Node 22.12+ recommended (current build can still pass on 22.11 with warning)
+- pnpm
+
+Install and run:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Quality and build:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
+Note: build is gated and already runs lint + typecheck automatically.
+
+## Cloudflare Deployment (Workers + Static Assets)
+
+This repository includes:
+
+- [src/worker.ts](src/worker.ts) as the Worker entrypoint.
+- [wrangler.toml](wrangler.toml) configured with an assets directory and SPA fallback.
+- Deployment scripts in [package.json](package.json).
+
+Build and deploy:
+
+```bash
+pnpm cf:deploy
+```
+
+Dry-run deploy (validation without publishing):
+
+```bash
+pnpm cf:deploy:dry-run
+```
+
+Run locally in Worker mode:
+
+```bash
+pnpm cf:dev
+```
+
+Before first deployment, authenticate Wrangler and ensure the Worker name in [wrangler.toml](wrangler.toml) is available:
+
+- kashi-galli-gta-vi
+
+## Project Structure
+
+- [src/App.tsx](src/App.tsx): route shell and animated transitions
+- [src/pages/LandingPage.tsx](src/pages/LandingPage.tsx): intro scene
+- [src/pages/EditorPage.tsx](src/pages/EditorPage.tsx): image editor integration
+- [src/pages/MissionPage.tsx](src/pages/MissionPage.tsx): mission scene with persisted visual
+- [src/pages/FinalePage.tsx](src/pages/FinalePage.tsx): finale scene with persisted visual
+- [src/lib/editorState.ts](src/lib/editorState.ts): local storage helpers
+
+## Submission Checklist
+
+- Public GitHub repository
+- Deployed URL on Cloudflare Workers
+- Editor workflow demo (GIF or short video)
+- README section mapping implementation to challenge criteria
+
+## Next Implementation Milestones
+
+- Create mission score/timer loop
+- Generate downloadable finale poster with stats overlay
+- Add audio ambiance for galli and ghat transitions
