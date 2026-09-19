@@ -1,3 +1,5 @@
+import { type ChangeEvent, useMemo, useState } from 'react'
+import ImageEditor, { type ImageEditorSaveResult } from '@unlayer/react-image-editor'
 import { Link } from 'react-router-dom'
 
 const tasks = [
@@ -7,6 +9,41 @@ const tasks = [
 ]
 
 function EditorPage() {
+  const [imageToEdit, setImageToEdit] = useState('/kashi-base.svg')
+  const [savedImage, setSavedImage] = useState<string | null>(null)
+  const [status, setStatus] = useState('Load an image and start editing your Kashi style.')
+
+  const editorOptions = useMemo(
+    () => ({
+      theme: 'dark' as const,
+      features: {
+        ai: false,
+      },
+    }),
+    [],
+  )
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) {
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        setImageToEdit(reader.result)
+        setStatus(`Loaded ${file.name}. You can now crop, filter, and style it.`)
+      }
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const handleSave = ({ dataUrl }: ImageEditorSaveResult) => {
+    setSavedImage(dataUrl)
+    setStatus('Saved. This edited visual is ready for mission and finale scenes.')
+  }
+
   return (
     <section className="grid gap-6 lg:grid-cols-[1fr_0.95fr] lg:gap-8">
       <article className="rounded-3xl border border-saffron-500/35 bg-ink-900/70 p-6 sm:p-8">
@@ -22,9 +59,63 @@ function EditorPage() {
           Your edited output will be saved and used across mission and finale scenes.
         </p>
 
-        <div className="mt-6 rounded-2xl border border-dashed border-white/30 bg-black/30 p-5 text-sm text-sand-100/75">
-          Editor canvas integration is the next implementation step.
+        <div className="mt-6 rounded-2xl border border-white/20 bg-black/30 p-4 text-sm text-sand-100/85">
+          <p className="mb-3">Base visual</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <label className="cursor-pointer rounded-full border border-saffron-300 bg-saffron-300/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-saffron-100">
+              Upload Image
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </label>
+            <button
+              type="button"
+              onClick={() => {
+                setImageToEdit('/kashi-base.svg')
+                setStatus('Reset to base Kashi visual.')
+              }}
+              className="rounded-full border border-white/40 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-sand-100/90"
+            >
+              Reset Base
+            </button>
+          </div>
+          <p className="mt-3 text-xs text-teal-200/85">{status}</p>
         </div>
+
+        <div className="mt-6 overflow-hidden rounded-2xl border border-white/15 bg-ink-950/60 p-2">
+          <ImageEditor
+            image={imageToEdit}
+            options={editorOptions}
+            minHeight={560}
+            onSave={handleSave}
+            onCancel={() => setStatus('Editing cancelled. Continue when ready.')}
+            onLoadError={() => setStatus('Could not load that image. Try a different file.')}
+            onError={() => setStatus('Editor failed to initialize. Refresh and retry.')}
+          />
+        </div>
+
+        {savedImage && (
+          <div className="mt-6 rounded-2xl border border-teal-200/30 bg-teal-200/10 p-4">
+            <p className="mb-3 text-xs uppercase tracking-[0.16em] text-teal-100">
+              Saved Preview
+            </p>
+            <img
+              src={savedImage}
+              alt="Edited mission visual"
+              className="h-48 w-full rounded-xl object-cover"
+            />
+            <a
+              href={savedImage}
+              download="kashi-galli-edited.png"
+              className="mt-3 inline-block rounded-full border border-teal-200 bg-teal-200/20 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-teal-100"
+            >
+              Download Edited Image
+            </a>
+          </div>
+        )}
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

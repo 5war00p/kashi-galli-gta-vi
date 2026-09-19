@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.0(@types/node@26.6.2)(esbuild@0.28.1)(jiti@2.7.0))
+      '@unlayer/react-image-editor':
+        specifier: ^1.0.2
+        version: 1.0.2(react@19.3.0)
       framer-motion:
         specifier: ^13.4.0
         version: 13.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -449,7 +452,6 @@ packages:
   '@oxlint/binding-darwin-arm64@1.83.0':
     resolution: {integrity: sha512-hsOjYjszLb/3zym/TkzUMPAoQlTJcuzSyEPOAyA+skXJIX9M0o+4JfOtqopX/Vf4hSLrJ98j0nvFo23gzk8auQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
     os: [darwin]
 
   '@oxlint/binding-darwin-x64@1.83.0':
@@ -876,6 +878,15 @@ packages:
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [win32]
+
+  '@unlayer/react-image-editor@1.0.2':
+    resolution: {integrity: sha512-VJx1jSnmHX4rpaY+GdK98PWL0sUxu0fimankgXI9S0DjwpqJvlJXYhPn9iCpCzVykvVviwU2C6qWO/wdOfXHlA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=18'
+
+  '@unlayer/types@1.448.0':
+    resolution: {integrity: sha512-k7NhJEdp5d40pWRAp9hSpTsyjD/vCrWrinNJaZkkXRU4YK7nsa9EYvnXHmVa/TcuevmPz0JRxzi8rJ1qSfvFDw==}
 
   '@vitejs/plugin-react@6.1.1':
     resolution: {integrity: sha512-yxLaQV9gkhS8ezJqCM6+ndU7mDY6gqAg75NQ+0IjwEI8IYOmQCgkRwHKVSfWXW076DsqMo0Dk+0FK1U+M5RgFw==}
@@ -1808,6 +1819,13 @@ snapshots:
 
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
+
+  '@unlayer/react-image-editor@1.0.2(react@19.3.0)':
+    dependencies:
+      '@unlayer/types': 1.448.0
+      react: 19.3.0
+
+  '@unlayer/types@1.448.0': {}
 
   '@vitejs/plugin-react@6.1.1(vite@8.3.0(@types/node@26.6.2)(esbuild@0.28.1)(jiti@2.7.0))':
     dependencies:

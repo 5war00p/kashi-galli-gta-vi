@@ -1,0 +1,38 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1423" />
+      <stop offset="0.52" stop-color="#2E1F35" />
+      <stop offset="1" stop-color="#173243" />
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="600" x2="1200" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2AA9B0" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#07313B" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <rect y="560" width="1200" height="240" fill="url(#river)" />
+
+  <path d="M80 560L180 330L260 560H80Z" fill="#4A2F25" />
+  <path d="M240 560L360 290L470 560H240Z" fill="#61392E" />
+  <path d="M470 560L620 250L760 560H470Z" fill="#774339" />
+  <path d="M740 560L900 310L1030 560H740Z" fill="#5A332A" />
+
+  <rect x="74" y="572" width="1052" height="12" rx="6" fill="#FFB347" fill-opacity="0.55" />
+
+  <g opacity="0.92">
+    <rect x="300" y="430" width="580" height="130" rx="28" fill="#F8751A" />
+    <circle cx="420" cy="585" r="48" fill="#1D1E24" />
+    <circle cx="770" cy="585" r="48" fill="#1D1E24" />
+    <rect x="520" y="380" width="230" height="70" rx="18" fill="#F9EFE2" fill-opacity="0.86" />
+    <rect x="570" y="345" width="90" height="35" rx="8" fill="#111219" />
+  </g>
+
+  <text x="80" y="120" fill="#F9EFE2" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" letter-spacing="2">
+    KASHI GALLI
+  </text>
+  <text x="80" y="170" fill="#8CE6D9" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="1.5">
+    Base Visual for Workshop
+  </text>
+</svg>
