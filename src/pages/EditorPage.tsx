@@ -52,8 +52,8 @@ function EditorPage() {
   }
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[1fr_0.95fr] lg:gap-8">
-      <article className="rounded-3xl border border-saffron-500/35 bg-ink-900/70 p-6 sm:p-8">
+    <section className="grid gap-6 lg:grid-cols-12 lg:gap-8">
+      <article className="rounded-3xl border border-saffron-500/35 bg-ink-900/70 p-6 sm:p-8 lg:col-span-8">
         <p className="text-xs uppercase tracking-[0.28em] text-teal-200/85">
           Customization Hub
         </p>
@@ -92,18 +92,6 @@ function EditorPage() {
           <p className="mt-3 text-xs text-teal-200/85">{status}</p>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border border-white/15 bg-ink-950/60 p-2">
-          <ImageEditor
-            image={imageToEdit}
-            options={editorOptions}
-            minHeight={560}
-            onSave={handleSave}
-            onCancel={() => setStatus('Editing cancelled. Continue when ready.')}
-            onLoadError={() => setStatus('Could not load that image. Try a different file.')}
-            onError={() => setStatus('Editor failed to initialize. Refresh and retry.')}
-          />
-        </div>
-
         {savedImage && (
           <div className="mt-6 rounded-2xl border border-teal-200/30 bg-teal-200/10 p-4">
             <p className="mb-3 text-xs uppercase tracking-[0.16em] text-teal-100">
@@ -140,7 +128,7 @@ function EditorPage() {
         </div>
       </article>
 
-      <aside className="rounded-3xl border border-white/15 bg-black/25 p-6 sm:p-7">
+      <aside className="rounded-3xl border border-white/15 bg-black/25 p-6 sm:p-7 lg:col-span-4">
         <p className="font-display text-4xl uppercase text-teal-200">Build Tasks</p>
         <ul className="mt-4 space-y-3">
           {tasks.map((task, idx) => (
@@ -154,6 +142,24 @@ function EditorPage() {
           ))}
         </ul>
       </aside>
+
+      <div className="rounded-3xl border border-white/15 bg-black/25 p-3 sm:p-4 lg:col-span-12">
+        <p className="mb-3 px-1 text-xs uppercase tracking-[0.22em] text-sand-100/75">
+          Live Editor Canvas
+        </p>
+        <div className="overflow-hidden rounded-2xl border border-white/15 bg-ink-950/60 p-1 sm:p-2">
+          <ImageEditor
+            image={imageToEdit}
+            options={editorOptions}
+            minHeight="72vh"
+            style={{ width: '100%' }}
+            onSave={handleSave}
+            onCancel={() => setStatus('Editing cancelled. Continue when ready.')}
+            onLoadError={() => setStatus('Could not load that image. Try a different file.')}
+            onError={() => setStatus('Editor failed to initialize. Refresh and retry.')}
+          />
+        </div>
+      </div>
     </section>
   )
 }
