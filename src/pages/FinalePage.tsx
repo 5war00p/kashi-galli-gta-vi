@@ -13,8 +13,8 @@ function FinalePage() {
 
     try {
       const canvas = document.createElement('canvas')
-      canvas.width = 1200
-      canvas.height = 1600
+      canvas.width = 1320
+      canvas.height = 1540
       const context = canvas.getContext('2d')
       if (!context) {
         return
@@ -53,7 +53,7 @@ function FinalePage() {
 
       context.fillStyle = '#f9efe2'
       context.font = '600 42px Manrope, Arial, sans-serif'
-      context.fillText('KASHI AFTER DARK RUN SUMMARY', 80, 208)
+      context.fillText('KASHI NIGHT RUN // FINAL CUT', 80, 208)
 
       context.fillStyle = 'rgba(0, 0, 0, 0.58)'
       context.fillRect(80, 1130, canvas.width - 160, 360)
@@ -74,12 +74,12 @@ function FinalePage() {
 
       statLine('SCORE', scoreValue, 120, 1200)
       statLine('DODGES', dodgeValue, 120, 1320)
-      statLine('HITS', hitValue, 620, 1200)
-      statLine('RESULT', resultValue, 620, 1320)
+      statLine('HITS', hitValue, 700, 1200)
+      statLine('RESULT', resultValue, 700, 1320)
 
       context.fillStyle = '#ffb347'
       context.font = '700 28px Manrope, Arial, sans-serif'
-      context.fillText('BUILD WITH REACT IMAGE EDITOR CHALLENGE', 120, 1465)
+      context.fillText('#BuiltWithImageEditor', 120, 1465)
 
       const dataUrl = canvas.toDataURL('image/png')
       const link = document.createElement('a')
@@ -103,13 +103,12 @@ function FinalePage() {
           Ghat Arrival
         </h2>
         <p className="mt-4 max-w-xl text-sand-100/85">
-          Finale card will merge mission stats and your edited image into a
-          downloadable poster-style share visual for social and hackathon
-          submission.
+          Your finale card combines your run stats and edited image into a
+          downloadable poster you can share or submit.
         </p>
 
         <div className="mt-6 rounded-2xl border border-dashed border-saffron-300/45 bg-saffron-300/10 p-5 text-sm text-sand-100/85">
-          Share card export will be implemented after editor state wiring.
+          When you are ready, export your poster in one click.
         </div>
 
         {editedImage && (
@@ -170,17 +169,17 @@ function FinalePage() {
 
       <aside className="rounded-3xl border border-white/15 bg-black/25 p-6 sm:p-7">
         <p className="font-display text-4xl uppercase text-teal-200">
-          Submission Hooks
+          What You Show
         </p>
         <ul className="mt-4 space-y-3 text-sm text-sand-100/90">
           <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-            Creative worldbuilding with Kashi identity
+            Your Kashi-inspired world and local identity
           </li>
           <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-            React Image Editor used as central mechanic
+            Your visual edits powered by React Image Editor
           </li>
           <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-            Cinematic visual execution and smooth flow
+            Your cinematic flow from workshop to finale
           </li>
         </ul>
       </aside>

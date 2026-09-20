@@ -55,8 +55,8 @@ function LandingPage() {
         </ul>
 
         <div className="mt-5 rounded-2xl border border-saffron-500/30 bg-saffron-500/10 px-4 py-3 text-sm text-sand-100/90">
-          React Image Editor will power your vehicle or avatar customization in the
-          next screen.
+          Head to the next screen to customize your ride or avatar with React Image
+          Editor.
         </div>
       </aside>
     </section>

@@ -64,29 +64,6 @@ function EditorPage() {
     }
   }
 
-  const downloadSavedImage = async () => {
-    if (!savedImage) {
-      setStatus('Nothing to download yet. Capture from editor first.')
-      return
-    }
-
-    try {
-      const response = await fetch(savedImage)
-      const blob = await response.blob()
-      const objectUrl = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = objectUrl
-      link.download = 'kashi-galli-edited.png'
-      document.body.appendChild(link)
-      link.click()
-      link.remove()
-      URL.revokeObjectURL(objectUrl)
-      setStatus('Download started.')
-    } catch {
-      setStatus('Download failed. Please try capturing again.')
-    }
-  }
-
   return (
     <section className="grid gap-6 lg:grid-cols-12 lg:gap-8">
       <article className="rounded-3xl border border-saffron-500/35 bg-ink-900/70 p-6 sm:p-8 lg:col-span-8">
@@ -98,8 +75,8 @@ function EditorPage() {
           <span className="block text-sand-100">Workshop</span>
         </h2>
         <p className="mt-4 max-w-xl text-sand-100/85">
-          This panel will host React Image Editor as the core mission prep tool.
-          Your edited output will be saved and used across mission and finale scenes.
+          Use this editor to shape your look before the run. Save your visual here,
+          then carry it into both the mission and finale scenes.
         </p>
 
         <div className="mt-6 rounded-2xl border border-white/20 bg-black/30 p-4 text-sm text-sand-100/85">
@@ -138,13 +115,6 @@ function EditorPage() {
               alt="Edited mission visual"
               className="h-48 w-full rounded-xl object-cover"
             />
-            <button
-              type="button"
-              onClick={downloadSavedImage}
-              className="mt-3 inline-block rounded-full border border-teal-200 bg-teal-200/20 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-teal-100"
-            >
-              Download Edited Image
-            </button>
           </div>
         )}
 

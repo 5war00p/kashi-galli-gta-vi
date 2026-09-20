@@ -111,12 +111,12 @@ function MissionPage() {
           Galli Run
         </h2>
         <p className="mt-4 max-w-xl text-sand-100/85">
-          Mission prototype will be a short dodge-run sequence. We will inject the
-          customized visual into the mission HUD for instant player identity.
+          Play a short dodge-run through the gallis. Your saved visual appears in
+          the mission HUD so the run feels like yours.
         </p>
 
         <div className="mt-6 rounded-2xl border border-teal-200/30 bg-teal-200/10 p-4 text-sm text-sand-100/90">
-          ETA to ghat: 90s. Keep momentum, avoid collisions, and hit the riverfront
+          ETA to ghat: 45s. Keep momentum, avoid collisions, and hit the riverfront
           before the bell drop.
         </div>
 

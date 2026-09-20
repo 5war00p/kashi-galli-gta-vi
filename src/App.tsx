@@ -39,7 +39,7 @@ function App() {
               Galli to Ghat
             </p>
             <p className="text-xs uppercase tracking-[0.25em] text-teal-200/80">
-              Kashi GTA VI Inspired Experience
+              Build Your Kashi Night Run
             </p>
           </div>
           <nav className="flex items-center gap-2">
